@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/styles.css" />
     <title>Weather App</title>
 </head>
@@ -16,12 +17,12 @@
     <div class="container">
         <header>
             <form id="search-engine-form">
-                <input type="text" name="search-engine" id="search-engine" placeholder="Enter a city" />
+                <input type="text" name="search-engine" id="searched-city" placeholder="Enter a city" />
                 <button>Search</button>
             </form>
             <button id="current-location-button">Current location</button>
         </header>
-        <h1>London</h1>
+        <h1 id="displayed-city">Lndn</h1>
         <p>
             <ul>
                 <li>saturday 01/01/2020</li>
@@ -32,14 +33,15 @@
         <div class="row">
             <div class="col today-details-left">
                 <ul>
-                    <li><span class="temp-today">6</span> <span class="units">°C | °F</span></li>
+                    <li><span class="temp-today" id="current-temperature">6</span> <span class="units">°C | °F</span></li>
                     <li><img class="today-icon" src="weather icons/png/001-sun.png" alt="weather icon"></li>
                 </ul>
             </div>
             <div class="col today-details-right">
                 <ul>
-                    <li>humidity: 300%</li>
-                    <li>wind: 200km/h</li>
+                    <li id="sky">cloudy</li>
+                    <li>humidity: <span id="humidity">300</span>%</li>
+                    <li>wind: <span id="wind">200</span>km/h</li>
                 </ul>
             </div>
         </div>
