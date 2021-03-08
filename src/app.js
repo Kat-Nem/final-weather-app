@@ -1,3 +1,38 @@
+let now = new Date();
+console.log(now);
+let hours = now.getHours();
+if (hours < 10) {
+    hours = `0${hours}`;
+}
+let minutes = now.getMinutes();
+if (minutes < 10) {
+    minutes = `0${minutes}`;
+}
+let days = [
+    "sunday",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+];
+let day = days[now.getDay()];
+let date = now.getDate();
+if (date < 10) {
+    date = `0${date}`;
+}
+let month = now.getMonth();
+if (month < 10) {
+    month = `0${month}`;
+}
+let year = now.getFullYear();
+
+let dayAndDate = document.getElementById("day-and-date");
+let time = document.getElementById("time");
+dayAndDate.innerHTML = `${day} ${date}/${month}/${year}`;
+time.innerHTML = `${hours}:${minutes}`;
+
 function displayWeatherByCity(response) {
     let displayedCity = document.getElementById("displayed-city");
     let currentTemperature = document.getElementById("current-temperature");
