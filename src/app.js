@@ -44,6 +44,12 @@ function displayWeatherByCity(response) {
     sky.innerHTML = `${response.data.weather[0].description}`;
     humidity.innerHTML = `${response.data.main.humidity}`;
     wind.innerHTML = `${Math.round(response.data.wind.speed)}`;
+    console.log(response);
+    let todayIcon = document.getElementById("today-icon");
+    todayIcon.setAttribute(
+        "src",
+        `src/weather icons/png/${response.data.weather[0].icon}.png`
+    );
 }
 
 let form = document.getElementById("search-engine-form");
@@ -66,6 +72,11 @@ function displayWeatherByGeolocation(response) {
     sky.innerHTML = `${response.data.weather[0].description}`;
     humidity.innerHTML = `${response.data.main.humidity}`;
     wind.innerHTML = `${Math.round(response.data.wind.speed)}`;
+    let todayIcon = document.getElementById("today-icon");
+    todayIcon.setAttribute(
+        "src",
+        `src/weather icons/png/${response.data.weather[0].icon}.png`
+    );
 }
 
 let locationButton = document.getElementById("current-location-button");
