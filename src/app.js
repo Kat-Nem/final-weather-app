@@ -92,3 +92,16 @@ locationButton.addEventListener("click", function(event) {
     }
     navigator.geolocation.getCurrentPosition(handlePosition);
 });
+
+window.onload = function(event) {
+    event.preventDefault();
+
+    function handlePosition(position) {
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+        let apiKey = "3975788e63c7f2d707103c2c24ee6bb0";
+        let urlGeolocation = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+        axios.get(urlGeolocation).then(displayWeatherByGeolocation);
+    }
+    navigator.geolocation.getCurrentPosition(handlePosition);
+};
