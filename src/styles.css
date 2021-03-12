@@ -92,3 +92,23 @@ footer {
 .forecast-icon {
     max-width: 40%;
 }
+
+.active {
+    text-decoration: none;
+    color: #141518;
+    font-weight: 900;
+    font-size: 120%;
+}
+
+.active:hover {
+    cursor: default;
+}
+
+.inactive {
+    text-decoration: underline;
+    color: #141518;
+}
+
+.inactive:hover {
+    cursor: pointer;
+}

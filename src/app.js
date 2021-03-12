@@ -50,6 +50,7 @@ function displayWeatherByCity(response) {
         "src",
         `src/weather icons/png/${response.data.weather[0].icon}.png`
     );
+    celsiusTemperature = Math.round(response.data.main.temp);
 }
 
 let form = document.getElementById("search-engine-form");
@@ -77,6 +78,7 @@ function displayWeatherByGeolocation(response) {
         "src",
         `src/weather icons/png/${response.data.weather[0].icon}.png`
     );
+    celsiusTemperature = Math.round(response.data.main.temp);
 }
 
 let locationButton = document.getElementById("current-location-button");
@@ -105,3 +107,31 @@ window.onload = function(event) {
     }
     navigator.geolocation.getCurrentPosition(handlePosition);
 };
+
+function convertToFahrenheit(event) {
+    event.preventDefault();
+    let fahrenheitTemperature = Math.round(celsiusTemperature * (9 / 5) + 32);
+    let currentTemperature = document.getElementById("current-temperature");
+    currentTemperature.innerHTML = fahrenheitTemperature;
+    fahrenheitLink.classList.add("active");
+    fahrenheitLink.classList.remove("inactive");
+    celsiusLink.classList.add("inactive");
+    celsiusLink.classList.remove("active");
+}
+
+function convertToCelsius(event) {
+    event.preventDefault();
+    let currentTemperature = document.getElementById("current-temperature");
+    currentTemperature.innerHTML = celsiusTemperature;
+    celsiusLink.classList.add("active");
+    celsiusLink.classList.remove("inactive");
+    fahrenheitLink.classList.add("inactive");
+    fahrenheitLink.classList.remove("active");
+}
+let celsiusTemperature = null;
+console.log(celsiusTemperature);
+let fahrenheitLink = document.getElementById("fahrenheit");
+fahrenheitLink.addEventListener("click", convertToFahrenheit);
+
+let celsiusLink = document.getElementById("celsius");
+celsiusLink.addEventListener("click", convertToCelsius);
