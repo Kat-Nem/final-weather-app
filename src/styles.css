@@ -12,10 +12,10 @@ header {
 
 form {
     display: inline;
+    min-width: 90%;
 }
 
 input {
-    width: 250px;
     border-radius: 10px;
     border: 1px solid #141518;
     outline: none;
@@ -60,7 +60,7 @@ footer {
     margin-top: 10px;
     border: 1px solid #141518;
     border-radius: 10px;
-    max-width: 500px;
+    max-width: 450px;
     text-align: center;
     box-shadow: 5px 5px 20px 5px rgba(251, 175, 218, 0.5);
 }

@@ -16,11 +16,16 @@
 <body>
     <div class="container">
         <header>
-            <form id="search-engine-form">
-                <input type="text" name="search-engine" id="searched-city" placeholder="Enter a city" />
-                <button>Search</button>
-            </form>
-            <button id="current-location-button">Current location</button>
+            <div class="row">
+                <div>
+                    <form id="search-engine-form">
+                        <input type="text" name="search-engine" id="searched-city" placeholder="Enter a city" />
+                        <button>Search</button>
+                    </form>
+                </div>
+                <div>
+                    <button id="current-location-button">Current location</button></div>
+            </div>
         </header>
         <h1 id="displayed-city">Lndn</h1>
         <p>
@@ -47,42 +52,8 @@
             </div>
         </div>
         <hr>
-        <div class="row">
-            <div class="col">
-                <ul>
-                    <li>mon</li>
-                    <li>1°C</li>
-                    <li><img src="src/weather icons/png/01d.png" alt="weather icon" class="forecast-icon"></li>
-                </ul>
-            </div>
-            <div class="col">
-                <ul>
-                    <li>tue</li>
-                    <li>1°C</li>
-                    <li><img src="src/weather icons/png/01d.png" alt="weather icon" class="forecast-icon"></li>
-                </ul>
-            </div>
-            <div class="col">
-                <ul>
-                    <li>wed</li>
-                    <li>1°C</li>
-                    <li><img src="src/weather icons/png/01d.png" alt="weather icon" class="forecast-icon"></li>
-                </ul>
-            </div>
-            <div class="col">
-                <ul>
-                    <li>thu</li>
-                    <li>1°C</li>
-                    <li><img src="src/weather icons/png/01d.png" alt="weather icon" class="forecast-icon"></li>
-                </ul>
-            </div>
-            <div class="col">
-                <ul>
-                    <li>fri</li>
-                    <li>1°C</li>
-                    <li><img src="src/weather icons/png/01d.png" alt="weather icon" class="forecast-icon"></li>
-                </ul>
-            </div>
+        <div class="row" id="forecast">
+
         </div>
         <hr>
         <footer>
