@@ -1,5 +1,5 @@
+// formatting date, days and time
 let now = new Date();
-console.log(now);
 let hours = now.getHours();
 if (hours < 10) {
     hours = `0${hours}`;
@@ -22,7 +22,7 @@ let date = now.getDate();
 if (date < 10) {
     date = `0${date}`;
 }
-let month = now.getMonth();
+let month = now.getMonth() + 1;
 if (month < 10) {
     month = `0${month}`;
 }
@@ -40,6 +40,7 @@ function formatDay(timestamp) {
     return `${day}`;
 }
 
+// display weather and forecast by city name
 function displayWeatherByCity(response) {
     let displayedCity = document.getElementById("displayed-city");
     let currentTemperature = document.getElementById("current-temperature");
@@ -51,7 +52,6 @@ function displayWeatherByCity(response) {
     sky.innerHTML = `${response.data.weather[0].description}`;
     humidity.innerHTML = `${response.data.main.humidity}`;
     wind.innerHTML = `${Math.round(response.data.wind.speed)}`;
-    console.log(response);
     let todayIcon = document.getElementById("today-icon");
     todayIcon.setAttribute(
         "src",
@@ -70,17 +70,16 @@ form.addEventListener("submit", function(event) {
 });
 
 function displayForecast(response) {
-    console.log(response);
     let forecastElement = document.getElementById("forecast");
     forecastElement.innerHTML = null;
-    let forecast = null;
     for (let index = 1; index < 6; index++) {
         let forecast = response.data.daily[index];
-        console.log(forecast);
         forecastElement.innerHTML += ` <div class="col">
                 <ul>
                     <li>${formatDay(forecast.dt)}</li>
-                    <li>${Math.round(forecast.temp.day)}°C</li>
+                    <li id="forecast-temperature-text"><span id="forecast-temperature">${Math.round(
+                      forecast.temp.day
+                    )}</span>°C</li>
                     <li><img src="src/weather icons/png/${
                       forecast.weather[0].icon
                     }.png" alt="weather icon" class="forecast-icon"></li>
@@ -90,6 +89,7 @@ function displayForecast(response) {
     }
 }
 
+// display weather and forecast by local coordinates - using displayForecast function from above
 function getSearchedCityCoords(response) {
     let lon = response.data.coord.lon;
     let lat = response.data.coord.lat;
@@ -134,11 +134,14 @@ locationButton.addEventListener("click", function(event) {
         let longitude = position.coords.longitude;
         let apiKey = "3975788e63c7f2d707103c2c24ee6bb0";
         let urlGeolocation = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+        let urlGeolocationForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
         axios.get(urlGeolocation).then(displayWeatherByGeolocation);
+        axios.get(urlGeolocationForecast).then(displayForecast);
     }
     navigator.geolocation.getCurrentPosition(handlePosition);
 });
 
+// displaying weather by local coordinates when screen loads, using functions from above
 window.onload = function(event) {
     event.preventDefault();
 
@@ -147,16 +150,20 @@ window.onload = function(event) {
         let longitude = position.coords.longitude;
         let apiKey = "3975788e63c7f2d707103c2c24ee6bb0";
         let urlGeolocation = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+        let urlGeolocationForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
         axios.get(urlGeolocation).then(displayWeatherByGeolocation);
+        axios.get(urlGeolocationForecast).then(displayForecast);
     }
     navigator.geolocation.getCurrentPosition(handlePosition);
 };
 
+// converting main displayed temperature to celsius or fahrenheit and modifying classes on links
 function convertToFahrenheit(event) {
     event.preventDefault();
     let fahrenheitTemperature = Math.round(celsiusTemperature * (9 / 5) + 32);
     let currentTemperature = document.getElementById("current-temperature");
     currentTemperature.innerHTML = fahrenheitTemperature;
+
     fahrenheitLink.classList.add("active");
     fahrenheitLink.classList.remove("inactive");
     celsiusLink.classList.add("inactive");
@@ -173,7 +180,6 @@ function convertToCelsius(event) {
     fahrenheitLink.classList.remove("active");
 }
 let celsiusTemperature = null;
-console.log(celsiusTemperature);
 let fahrenheitLink = document.getElementById("fahrenheit");
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
 

@@ -5,17 +5,18 @@ body {
 }
 
 header {
-    padding: 20px 0;
+    padding: 5px 0;
     width: 100%;
     text-align: center;
 }
 
 form {
     display: inline;
-    min-width: 90%;
+    width: 300px;
 }
 
 input {
+    width: 70%;
     border-radius: 10px;
     border: 1px solid #141518;
     outline: none;
@@ -30,7 +31,7 @@ button {
 }
 
 button:hover {
-    background-color: #D3D3D3;
+    background-color: #fbc3e4c9;
 }
 
 h1 {
@@ -49,12 +50,6 @@ li {
     padding-left: 0;
 }
 
-footer {
-    margin-top: 10px;
-    text-align: left;
-    opacity: .7;
-}
-
 .container {
     background: linear-gradient(0deg, rgba(236, 237, 242, 1) 35%, rgba(251, 195, 228, 1) 100%);
     margin-top: 10px;
@@ -62,7 +57,18 @@ footer {
     border-radius: 10px;
     max-width: 450px;
     text-align: center;
-    box-shadow: 5px 5px 20px 5px rgba(251, 175, 218, 0.5);
+    box-shadow: 5px 5px 20px 5px #D3D3D3;
+}
+
+.form-and-buttons {
+    padding: 10px 0px;
+    margin: 5px;
+    border: 2px solid #ECEDF2;
+    border-radius: 10px;
+}
+
+.search-button {
+    width: 25%;
 }
 
 .temp-today {
@@ -75,18 +81,25 @@ footer {
     align-items: center;
 }
 
-.units {
-    position: relative;
-    bottom: 25px;
-}
-
 .today-details-left {
     display: flex;
     align-items: center;
 }
 
+.units {
+    position: relative;
+    bottom: 25px;
+}
+
 .today-icon {
     max-width: 25%;
+}
+
+.five-day-forecast {
+    padding: 10px 0px;
+    margin: 15px 5px;
+    border: 2px solid #FBAFDA;
+    border-radius: 10px;
 }
 
 .forecast-icon {
@@ -111,4 +124,27 @@ footer {
 
 .inactive:hover {
     cursor: pointer;
+}
+
+.code {
+    text-align: left;
+    font-size: small;
+}
+
+.icons {
+    text-align: right;
+    font-size: small;
+}
+
+.footer {
+    margin-top: 10px;
+    opacity: .7;
+}
+
+#day-and-date {
+    text-align: left;
+}
+
+#time {
+    text-align: right;
 }
