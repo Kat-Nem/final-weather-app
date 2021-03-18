@@ -71,10 +71,13 @@ form.addEventListener("submit", function(event) {
 
 function displayForecast(response) {
     console.log(response);
-    let forecast = response.data.daily[1];
-    console.log(forecast);
     let forecastElement = document.getElementById("forecast");
-    forecastElement.innerHTML = ` <div class="col">
+    forecastElement.innerHTML = null;
+    let forecast = null;
+    for (let index = 1; index < 6; index++) {
+        let forecast = response.data.daily[index];
+        console.log(forecast);
+        forecastElement.innerHTML += ` <div class="col">
                 <ul>
                     <li>${formatDay(forecast.dt)}</li>
                     <li>${Math.round(forecast.temp.day)}°C</li>
@@ -83,7 +86,8 @@ function displayForecast(response) {
                     }.png" alt="weather icon" class="forecast-icon"></li>
                 </ul>
             </div>
-`;
+    `;
+    }
 }
 
 function getSearchedCityCoords(response) {
